@@ -1,51 +1,19 @@
-import React from "react";
-
+import { Link } from 'react-router-dom'
 import { FaMoon, FaSun } from "react-icons/fa";
-import logo_algo from './logo_algo.png'
-export default function Header({darkMode, setDarkMode}) {
-
-
+function Header({ darkMode, setDarkMode }) {
   return (
-    <header
-      className={`shadow-md flex items-center justify-between py-3 px-6 w-full rounded-lg ${darkMode ? "bg-gray-500 text-white" : "bg-white text-gray-900"
-        }`}
-    >
-      <section className="flex items-center">
-        <h1 className="text-2xl  font-bold">
-          <img className="h-10" src={logo_algo} alt="" />
-          {/* Graph<span className="text-blue-500">Viz</span> Tool */}
-        </h1>
-      </section>
+    <header className="flex justify-between p-4 shadow-md">
+      {/* ✅ Keep your existing logo */}
+      <img src="/logo_algo.png" alt="AlgoTraverse Logo" className="h-8" />
 
-      {/* Navigation Links */}
-      <nav className="hidden md:flex space-x-6">
-        <a
-          href="#features"
-          className="hover:text-blue-500 font-medium transition duration-200"
-        >
-          Features
-        </a>
-        <a
-          href="#tutorials"
-          className="hover:text-blue-500 font-medium transition duration-200"
-        >
-          Tutorials
-        </a>
-        <a
-          href="#examples"
-          className="hover:text-blue-500 font-medium transition duration-200"
-        >
-          Examples
-        </a>
-        <a
-          href="#support"
-          className="hover:text-blue-500 font-medium transition duration-200"
-        >
-          Support
-        </a>
+      <nav className="flex gap-6">
+        {/* ✅ Add this link */}
+        <Link to="/graph" className="hover:text-blue-500">Graph Algos</Link>
+        <Link to="/os" className="hover:text-blue-500">OS Algorithms</Link>
+
       </nav>
 
-      {/* Theme Toggle */}
+      {/* ✅ Keep your dark mode button */}
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="ml-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500 transition duration-200"
@@ -53,5 +21,7 @@ export default function Header({darkMode, setDarkMode}) {
         {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon />}
       </button>
     </header>
-  );
+  )
 }
+
+export default Header;
