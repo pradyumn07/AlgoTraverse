@@ -141,7 +141,8 @@
         const Visulaisation = async () => {
             try {
                 setFetching(true);
-                const baseurl = 'http://localhost:3001';
+                const baseurl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
                 let graphMatrix;
                 if (GraphDetails.directed == true) {
                     graphMatrix = createAdjacencyMatrixDirected(nodes, edges);
