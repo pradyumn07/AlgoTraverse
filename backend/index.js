@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const app = express();
 const PORT = 3001;
-const allowedOrigins = ['http://localhost:3000','https://algo-traverse.vercel.app']
+const allowedOrigins = ['http://localhost:3000','https://algotraverse-1.onrender.com']
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors({origin: allowedOrigins, credentials: true}));
