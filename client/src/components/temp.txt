@@ -1,0 +1,102 @@
+    /* Visualise Graph Function  Starts
+       Function recieves a path and then updates particular nodes & edges
+       color looks like its traversing graph
+    */
+    //    const visualizeTraversal = (path) => {
+    //     // Create a detailed path with parent-child relationships
+    //     const detailedPath = [];
+    //     for (let i = 0; i < path.length; i++) {
+    //         detailedPath.push(path[i]);
+    //         detailedPath.push(path[i + 1]);
+    //         i++;
+    //     }
+
+    //     console.log("Detailed Path:", detailedPath);
+
+    //     const highlightedEdges = [];
+
+    //     // Generate edges for the detailed path
+    //     for (let i = 1; i < detailedPath.length; i += 2) {
+    //         highlightedEdges.push({
+    //             from: detailedPath[i - 1], // Parent
+    //             to: detailedPath[i],       // Child
+    //         });
+    //     }
+
+    //     // Total steps (alternating node and edge updates)
+    //     const totalSteps = detailedPath.length + highlightedEdges.length;
+
+    //     for (let step = 0; step < totalSteps; step++) {
+    //         setTimeout(() => {
+    //             if (step % 2 === 0) {
+    //                 // Highlight node (even steps)
+    //                 const nodeId = detailedPath[step / 2];
+    //                 if (nodes.get(nodeId)) {
+    //                     nodes.update({
+    //                         id: nodeId,
+    //                         color: { background: "rgb(17 24 39)", border: "#FF4500" }, // Highlight node
+    //                     });
+    //                 }
+    //             } else {
+    //                 // Highlight edge (odd steps)
+    //                 const edgeIndex = Math.floor(step / 2);
+    //                 const edge = highlightedEdges[edgeIndex];
+    //                 const edgeToHighlight = edges.get({
+    //                     filter: (e) => (e.from === edge.from && e.to === edge.to) ||
+    //                         (edge.from === e.to && edge.to === e.from),
+    //                 })[0];
+
+    //                 if (edgeToHighlight) {
+    //                     // Apply dynamic transition-like coloring effect
+    //                     edges.update({
+    //                         id: edgeToHighlight.id,
+    //                         color: { 
+    //                             color: "rgba(255, 69, 0, 1)", // Final color
+    //                         },
+    //                         width: 6, // Highlight width
+    //                         dashes: false, // Disable dashes for the highlight effect
+    //                     });
+
+    //                     // Simulate progressive coloring by using a timeout for intermediate updates
+    //                     setTimeout(() => {
+    //                         edges.update({
+    //                             id: edgeToHighlight.id,
+    //                             color: { color: "rgba(255, 165, 0, 0.7)" }, // Intermediate color
+    //                         });
+    //                     }, 300); // Partial transition delay
+    //                 }
+    //             }
+    //         }, step * 800); // Delay for each step (node -> edge alternation)
+    //     }
+
+    //     // Reset logic after animations
+    //     const totalResetDelay = totalSteps * 800 + 500;
+
+    //     setTimeout(() => {
+    //         // Reset nodes to default colors
+    //         detailedPath.forEach((nodeId) => {
+    //             if (nodes.get(nodeId)) {
+    //                 nodes.update({
+    //                     id: nodeId,
+    //                     color: { background: "#97c2fc", border: "#000000" }, // Default node color
+    //                 });
+    //             }
+    //         });
+
+    //         // Reset edges to default colors
+    //         highlightedEdges.forEach((edge) => {
+    //             const edgeToReset = edges.get({
+    //                 filter: (e) => (e.from === edge.from && e.to === edge.to) ||
+    //                     (!GraphDetails.directed && (edge.from === e.to && edge.to === e.from)),
+    //             })[0];
+
+    //             if (edgeToReset) {
+    //                 edges.update({
+    //                     id: edgeToReset.id,
+    //                     color: { color: "#e9e9e9" }, // Default edge color
+    //                     width: 2, // Reset to default width
+    //                 });
+    //             }
+    //         });
+    //     }, totalResetDelay);
+    // };
