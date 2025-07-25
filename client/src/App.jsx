@@ -10,7 +10,10 @@ import FCFS from './components/OS/FCFS';
 import SJF from './components/OS/SJF'; 
 import PriorityScheduling from './components/OS/PriorityScheduling';
 import RoundRobin from './components/OS/RoundRobin';
-
+import SortingAlgorithms from './components/SortingAlgorithm'
+import BubbleSort from './components/Sorting/BubbleSort'
+import MergeSort from './components/Sorting/MergeSort'
+import QuickSort from './components/Sorting/QuickSort'
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -29,6 +32,10 @@ export default function App() {
           <Route path="/os/cpu/sjf" element={<SJF />} />
           <Route path="/os/cpu/priority" element={<PriorityScheduling />} />
           <Route path="/os/cpu/roundrobin" element={<RoundRobin />} />
+          <Route path="/sorting" element={<SortingAlgorithms />} />
+          <Route path="/sorting/bubble" element={<BubbleSort />} />
+          <Route path="/sorting/merge" element={<MergeSort />} />
+          <Route path="/sorting/quick" element={<QuickSort />} />
         </Routes>
 
         <Toaster position='bottom-center' />

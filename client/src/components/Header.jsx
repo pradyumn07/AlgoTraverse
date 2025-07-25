@@ -10,6 +10,7 @@ function Header({ darkMode, setDarkMode }) {
         {/* ✅ Add this link */}
         <Link to="/graph" className="hover:text-blue-500">Graph Algos</Link>
         <Link to="/os" className="hover:text-blue-500">OS Algorithms</Link>
+        <Link to="/sorting" className="hover:text-blue-500">Sorting Algorithms</Link>
 
       </nav>
 
