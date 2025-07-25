@@ -5,10 +5,10 @@ const cors = require('cors')
 
 const app = express();
 const PORT = 3001;
-
+const allowedOrigins = ['http://localhost:3000','https://algo-traverse.vercel.app']
 // Middleware to parse JSON bodies
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: allowedOrigins, credentials: true}));
 
 
 // Endpoint to run a prims
