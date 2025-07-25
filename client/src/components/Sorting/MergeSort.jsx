@@ -5,6 +5,7 @@ export default function MergeSort() {
   const [array, setArray] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
+  const [speed, setSpeed] = useState(1000); // ✅ Speed control (ms)
 
   const handleAddArray = () => {
     const numbers = inputValue
@@ -15,7 +16,7 @@ export default function MergeSort() {
     setHighlighted([]);
   };
 
-  const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const merge = async (arr, start, mid, end) => {
     let left = arr.slice(start, mid + 1);
@@ -25,7 +26,7 @@ export default function MergeSort() {
 
     while (i < left.length && j < right.length) {
       setHighlighted([start + i, mid + 1 + j]);
-      await sleep(500); // animation speed
+      await sleep(speed); // ✅ Dynamic speed
 
       if (left[i] <= right[j]) {
         arr[k++] = left[i++];
@@ -38,13 +39,13 @@ export default function MergeSort() {
     while (i < left.length) {
       arr[k++] = left[i++];
       setArray([...arr]);
-      await sleep(500);
+      await sleep(speed);
     }
 
     while (j < right.length) {
       arr[k++] = right[j++];
       setArray([...arr]);
-      await sleep(500);
+      await sleep(speed);
     }
   };
 
@@ -87,6 +88,23 @@ export default function MergeSort() {
         >
           Set Array
         </button>
+      </div>
+
+      {/* ✅ Speed Control */}
+      <div className="flex flex-col items-center mb-6">
+        <label className="mb-2 font-semibold">
+          Animation Speed (ms): {speed}ms
+        </label>
+        <input
+          type="range"
+          min="100"
+          max="2000"
+          step="100"
+          value={speed}
+          onChange={(e) => setSpeed(Number(e.target.value))}
+          disabled={isSorting}
+          className="w-64"
+        />
       </div>
 
       {/* Bar Chart */}

@@ -6,6 +6,7 @@ export default function QuickSort() {
   const [highlighted, setHighlighted] = useState([]);
   const [pivotIndex, setPivotIndex] = useState(-1);
   const [isSorting, setIsSorting] = useState(false);
+  const [speed, setSpeed] = useState(700); // ✅ Speed state
 
   const handleAddArray = () => {
     const numbers = inputValue
@@ -17,29 +18,29 @@ export default function QuickSort() {
     setPivotIndex(-1);
   };
 
-  const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const partition = async (arr, low, high) => {
     let pivot = arr[high];
-    setPivotIndex(high);  // ✅ Highlight pivot
+    setPivotIndex(high); // ✅ Highlight pivot
 
     let i = low - 1;
 
     for (let j = low; j < high; j++) {
       setHighlighted([j, high]); // ✅ Highlight comparison with pivot
-      await sleep(700); // slow animation for clarity
+      await sleep(speed); // ✅ Use dynamic speed
 
       if (arr[j] < pivot) {
         i++;
         [arr[i], arr[j]] = [arr[j], arr[i]];
         setArray([...arr]);
-        await sleep(700);
+        await sleep(speed);
       }
     }
 
     [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
     setArray([...arr]);
-    await sleep(700);
+    await sleep(speed);
 
     return i + 1;
   };
@@ -85,6 +86,23 @@ export default function QuickSort() {
         </button>
       </div>
 
+      {/* ✅ Speed Control */}
+      <div className="flex flex-col items-center mb-6">
+        <label className="mb-2 font-semibold">
+          Animation Speed (ms): {speed}ms
+        </label>
+        <input
+          type="range"
+          min="100"
+          max="2000"
+          step="100"
+          value={speed}
+          onChange={(e) => setSpeed(Number(e.target.value))}
+          disabled={isSorting}
+          className="w-64"
+        />
+      </div>
+
       {/* Bar Chart */}
       <div className="flex items-end justify-center gap-2 h-64 w-full max-w-3xl bg-gray-100 p-4 rounded shadow relative">
         {array.map((num, idx) => (
@@ -102,10 +120,10 @@ export default function QuickSort() {
                 height: "100%",
                 backgroundColor:
                   pivotIndex === idx
-                    ? "#ef4444" // pivot red
+                    ? "#ef4444" // Pivot = Red
                     : highlighted.includes(idx)
-                    ? "#f97316" // comparing orange
-                    : "#10b981", // normal green
+                    ? "#f97316" // Comparing = Orange
+                    : "#10b981", // Normal = Green
               }}
             ></div>
             <span className="mt-2 text-sm font-medium">{num}</span>

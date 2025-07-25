@@ -6,9 +6,13 @@ export default function BubbleSort() {
   const [currentStep, setCurrentStep] = useState(-1);
   const [swapping, setSwapping] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
+  const [speed, setSpeed] = useState(1000); // ✅ Default speed in ms
 
   const handleAddArray = () => {
-    const numbers = inputValue.split(",").map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+    const numbers = inputValue
+      .split(",")
+      .map(num => parseInt(num.trim()))
+      .filter(num => !isNaN(num));
     setArray(numbers);
     setCurrentStep(-1);
     setSwapping([]);
@@ -23,7 +27,7 @@ export default function BubbleSort() {
         setCurrentStep(j);
         setSwapping([j, j + 1]);
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, speed)); // ✅ Dynamic speed
 
         if (arr[j] > arr[j + 1]) {
           let temp = arr[j];
@@ -60,6 +64,21 @@ export default function BubbleSort() {
         >
           Set Array
         </button>
+      </div>
+
+      {/* ✅ Speed Control */}
+      <div className="flex flex-col items-center mb-6">
+        <label className="mb-2 font-semibold">Animation Speed (ms): {speed}ms</label>
+        <input
+          type="range"
+          min="100"
+          max="2000"
+          step="100"
+          value={speed}
+          onChange={(e) => setSpeed(Number(e.target.value))}
+          disabled={isSorting}
+          className="w-64"
+        />
       </div>
 
       {/* Bar Chart */}
